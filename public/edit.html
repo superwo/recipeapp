@@ -37,25 +37,28 @@
     <div class="container">
         <div class="row">
             <div class="offset-by-four one-half column">
-                <h1>Recipe App</h1>
+                <input type="text" class="input-title" placeholder="Recipe Title">
+                <textarea class="input-desc" cols="30" rows="10" placeholder="Recipe Steps"></textarea>
+                <h4>Ingredients</h4>
+                <ul class="ingr-list">
+                    <li>
+                        <label>
+                            <input type="checkbox" checked> Rice
+                        </label>
+                        <a href="#">remove</a>
+                    </li>
+                    <li>
+                        <label>
+                            <input type="checkbox"> Olive oil
+                        </label>
+                        <a href="#">remove</a>
+                    </li>
+                </ul>
+                <input type="text" class="input-ingredient" placeholder="Add Ingredient">
+                <button type="button" class="btn-ing">Button</button>
                 <hr>
-                <div class="content">
-                    <input type="text" class="search" placeholder="Search" id="search">
-                    <ul class="recipes">
-                        <li class="recipe">
-                            <a href="#" class="recipe__link">
-                                <h4 class="recipe__title">Homemade Vegetarian Chili</h4>
-                                <p>You have all the ingredients</p>
-                            </a>
-                        </li>
-                        <li class="recipe">
-                            <a href="#" class="recipe__link">
-                                <h4 class="recipe__title">Spicy Jambalaya</h4>
-                                <p>You have some of the ingredients</p>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+                <h4>Danger zone</h4>
+                <button type="button" class="btn-delete">Delete recipe</button>
             </div>
         </div>
     </div>

@@ -1,0 +1,28 @@
+h4 {
+    margin-bottom: 1.5rem;
+}
+
+.search {
+    margin-bottom: 30px;
+}
+
+.recipe {
+    list-style: none;
+    border: 1px solid rgba(34, 34, 34, .2);
+    border-radius: 5px;
+}
+
+.recipe p {
+    margin-bottom: 0;
+}
+
+.recipe__link {
+    display: block;
+    text-decoration: none;
+    color: currentColor;
+    padding: 2rem;
+}
+
+.recipe__link:hover {
+    color: inherit;
+}
