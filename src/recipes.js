@@ -30,6 +30,15 @@ const createRecipe = () => {
     return id;
 }
 
+const getRecipe = (id) => {
+    const recipeIndex = recipes.findIndex(recipe => recipe.id === id);
+    if (recipeIndex > -1) {
+        return recipes[recipeIndex];
+    } else {
+        return null;
+    }
+}
+
 const removeRecipe = (id) => {
     const recipeIndex = recipes.findIndex(recipe => recipe.id === id);
     if (recipeIndex > -1) {
@@ -43,5 +52,6 @@ recipes = loadRecipes();
 export {
     getRecipes,
     createRecipe,
-    removeRecipe
+    removeRecipe,
+    getRecipe
 }
