@@ -26,3 +26,36 @@ h4 {
 .recipe__link:hover {
     color: inherit;
 }
+
+.input-title,
+.input-desc {
+    display: block;
+    width: 100%;
+    margin-top: 4rem;
+}
+
+.ingr-list {
+    list-style-type: none;
+}
+
+.ingr-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.ingr-list input {
+    margin: 0 1rem 0 0;
+}
+
+.input-desc {
+    height: 18rem;
+}
+
+.ingr-remove {
+    height: 25px;
+    line-height: 25px;
+    text-transform: none;
+    margin-bottom: 0;
+}

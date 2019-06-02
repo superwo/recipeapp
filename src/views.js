@@ -5,13 +5,15 @@ import {
 
 const renderRecipes = () => {
     const recipes = getRecipes();
+    const searchInput = document.getElementById('search');
+    const filteredRecipes = recipes.filter(recipe => recipe.title.toLowerCase().includes(searchInput.value.trim().toLowerCase()));
     const contentElement = document.querySelector('.content');
     contentElement.textContent = '';
 
-    if (recipes.length > 0) {
+    if (filteredRecipes.length > 0) {
         const ulElement = document.createElement('ul');
         ulElement.classList.add('recipes');
-        for (let recipe of recipes) {
+        for (let recipe of filteredRecipes) {
             let liElement = createDomElement(recipe);
             ulElement.appendChild(liElement);
         }
@@ -34,7 +36,7 @@ const createDomElement = (recipe) => {
     aElement.classList.add('recipe__link');
     hElement.classList.add('recipe__title');
     hElement.textContent = recipe.title;
-    pElement.textContent = 'You have all the ingredients';
+    pElement.textContent = getIngrAvail(recipe.ingredients);
 
     aElement.appendChild(hElement);
     aElement.appendChild(pElement)
@@ -43,9 +45,63 @@ const createDomElement = (recipe) => {
     return liElement;
 }
 
+const getIngrAvail = (ingredients) => {
+    const availNum = ingredients.reduce((prev, curr) => {
+        if (curr.avail) {
+            prev = prev + 1;
+        }
+        return prev;
+    }, 0);
+    if (availNum === 0) {
+        return 'You have none of the ingredients';
+    } else if (availNum < ingredients.length) {
+        return 'You have some of the ingredients';
+    } else {
+        return 'You have all the ingredients';
+    }
+}
+
 const initializeEdit = (recipeId) => {
     const recipe = getRecipe(recipeId);
+    const title = document.querySelector('.input-title');
+    const instruction = document.querySelector('.input-desc');
+    const ingList = document.querySelector('.ingr-list');
+    const ingHeader = document.querySelector('.ingr-header');
+
+    ingList.textContent = '';
+
+    if (recipe) {
+        title.value = recipe.title;
+        instruction.value = recipe.instructions;
+        if (recipe.ingredients.length > 0) {
+            ingHeader.textContent = 'Ingredients';
+            for (let ingredient of recipe.ingredients) {
+                ingList.appendChild(createIngredientElement(ingredient));
+            }
+        } else {
+            ingHeader.textContent = 'Add some ingredients';
+        }
+    }
     return recipe;
+}
+
+const createIngredientElement = (ingredient) => {
+    const liElement = document.createElement('li');
+    const labelElement = document.createElement('label');
+    const chElement = document.createElement('input');
+    const buttonElement = document.createElement('button');
+    chElement.setAttribute('type', 'checkbox');
+    if (ingredient.avail) {
+        chElement.setAttribute('checked', 'checked');
+    }
+    labelElement.appendChild(chElement);
+    labelElement.append(ingredient.name);
+    liElement.appendChild(labelElement);
+    buttonElement.classList.add('ingr-remove');
+    buttonElement.textContent = 'Remove';
+    buttonElement.setAttribute('data-name', ingredient.name);
+    liElement.appendChild(buttonElement);
+    return liElement;
 }
 
 export {

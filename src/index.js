@@ -12,3 +12,7 @@ document.getElementById('addRecipe').addEventListener('click', e => {
     // renderRecipes();
     location.assign(`/edit.html#${id}`);
 });
+
+document.getElementById('search').addEventListener('input', () => {
+    renderRecipes();
+})
